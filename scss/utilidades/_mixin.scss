@@ -1,0 +1,27 @@
+// es para reutilizar codigo
+
+@mixin medidas ($ancho, $alto){
+
+    width: $ancho;
+    height: $alto;
+}
+
+@mixin flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@mixin footer{
+    margin-top: 0.5rem;
+    font-size: small;
+    text-align: center;
+}

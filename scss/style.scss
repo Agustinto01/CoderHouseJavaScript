@@ -1,0 +1,336 @@
+/*BS*/
+@import "utilidades/variables";
+@import "utilidades/mixin";
+@import "utilidades/extend";
+// hojas secundarias
+@import "html/contacto";
+@import "html/nuestroestudio";
+@import "html/servicios";
+@import "html/sobremi";
+
+* {
+    /* outline: solid 1px red; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: $color-fondo;
+}
+
+/*estilos del contenedor*/
+
+
+.fuente-container {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+/*estilos del header*/
+
+.color-menu {
+    background-color: $color-menu;
+}
+
+.logo:hover {
+    box-shadow: 1px 1px 2px black;
+    transform: scale(0.9);
+}
+
+/*estilos del main*/
+.main-index {
+    @include flex-column-center;
+
+    h1 {
+        text-align: center;
+
+        span {
+            display: block;
+            align-items: center;
+        }
+    }
+}
+
+
+/*estilos del boton*/
+
+.main-index .boton {
+    background-color: $color-boton;
+    padding: 0.7rem;
+    box-shadow: 2px 2px 10px black;
+    text-shadow: 1px 1px 5px black;
+    align-self: auto;
+    font-size: large;
+}
+
+
+
+.main-index .boton:hover {
+    box-shadow: 1px 1px 2px black;
+    transform: scale(0.9);
+}
+
+main .boton a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+/*estilos de section*/
+section {
+    @include flex-column;
+    margin-top: 5rem;
+}
+
+
+section .cards .card {
+    margin: 1rem 1rem 1rem 0rem;
+
+}
+
+/*Estilos de section index*/
+.section-index {
+    align-items: center;
+}
+
+
+.section-index .cards {
+    align-self: center;
+
+}
+
+
+
+/*Estilos de section video*/
+
+.section-index-video {
+    @include flex-column-center;
+    margin-bottom: 2rem;
+
+    div {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%;
+        /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+}
+
+.section-index-video a {
+    text-decoration: none;
+    color: rgb(248, 224, 206);
+    background-color: rgb(224, 90, 0);
+    box-shadow: 1px 1px 4px black;
+    text-shadow: 1px 1px 3px black;
+    align-self: auto;
+    font-size: large;
+    margin-top: 20px;
+
+}
+
+.section-index-video a:hover {
+    box-shadow: 1px 1px 2px black;
+    transform: scale(0.9);
+}
+
+
+.section-index-video-div-iframe {
+    // @include iframes;
+    @extend %estiloIframes;
+}
+
+
+.main-nuestroestudio-iframediv-iframe {
+    // @include iframes;
+    @extend %estiloIframes;
+}
+
+.arriba div {
+
+    text-align: center;
+
+    a {
+        text-decoration: none;
+        color: rgb(253, 148, 19);
+        
+    }
+
+}
+
+/*estilos de footer*/
+
+.footer {
+    background-color: rgb(255, 236, 212);
+
+    h5 {
+        @include footer;
+    }
+
+    .social {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        div {
+            margin-top: 10px;
+            height: auto;
+            width: auto;
+            text-align: center;
+
+            img {
+                width: 30%;
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (min-width: 800px) {
+    /*Estilos del main*/
+
+    .main-index {
+        display: grid;
+        grid-template-columns: 1.5fr 2fr;
+        grid-template-rows: 0.2fr 0.2fr 1fr 0.3fr;
+        grid-template-areas:
+            "h1 h1"
+            "h2 h2"
+            "presentacion-texto presentacion-imagen "
+            "boton presentacion-imagen"
+        ;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+
+        h1 {
+            grid-area: h1;
+        }
+
+        h2 {
+            grid-area: h2;
+        }
+
+        .presentacion-imagen {
+            grid-area: presentacion-imagen;
+        }
+
+        .presentacion-texto {
+            grid-area: presentacion-texto;
+            padding: 1rem;
+            text-align: justify;
+        }
+
+        .boton {
+            grid-area: boton;
+            justify-content: end;
+        }
+
+        h1 span {
+            display: inline;
+            align-items: center;
+            color: black;
+        }
+        p{
+            font-size:medium;
+        }
+    }
+
+
+
+
+    /* main Sobre mi */
+
+
+    .main-sobremi {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.5fr 0.5fr;
+        grid-template-areas:
+            "h1 h1"
+            "sobremi sobremi-imagen "
+        ;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+
+        h1 {
+            grid-area: h1;
+
+        }
+
+        .sobremi p {
+            grid-area: sobremi;
+            text-align: justify;
+            padding: 1rem;
+        }
+
+        .sobremi-imagen img {
+            grid-area: sobremi-imagen;
+        }
+    }
+
+
+    /*Estilos de section index*/
+
+
+    .section-index .cards {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .cards .card {
+            margin: 1rem 1rem 1rem 0rem;
+
+        }
+
+    }
+
+    .section-index-video {
+        display: grid;
+        grid-template-columns: 0.9fr 0.5fr;
+        grid-template-rows: 0.7fr 2fr;
+        grid-template-areas:
+            "h3 h3"
+            "section-index-video-div a"
+        ;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+
+        h3 {
+            grid-area: h3;
+
+        }
+
+        a {
+            grid-area: a;
+        }
+
+        .section-index-video-div {
+            grid-area: section-index-video-div;
+        }
+    }
+
+    /* Estilos de footer */
+
+    .footer {
+        margin-top: 2rem;
+    }
+
+}
+
+
+@media screen and (min-width: 1024px) {
+    .main-index p{
+        font-size:x-large;
+    }
+}

@@ -1,0 +1,26 @@
+
+
+/*estilos page nuestro estudio*/
+
+.main-nuestroestudio {
+    @include flex-column-center;
+
+    h2 {
+        margin-top: 2rem;
+    }
+}
+
+
+/* estilos del maps */
+.main-nuestroestudio {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 2%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+
+.footer h3 {
+    @include footer;
+}

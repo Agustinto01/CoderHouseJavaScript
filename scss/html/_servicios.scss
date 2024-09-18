@@ -1,0 +1,25 @@
+
+
+/* estilos de servicio.html */
+
+.main-servicios h1,
+h2 {
+    text-align: center;
+}
+
+/* Estilos de Carousel */
+.carousel-caption {
+    font-size: 3rem;
+    color: black;
+    text-shadow: 2px black;
+}
+
+.carousel-inner .carousel-item img {
+
+    margin: auto;
+    opacity: 60%;
+}
+
+.footer h4 {
+    @include footer;
+}

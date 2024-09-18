@@ -1,0 +1,18 @@
+/* Estilos de page Sobre mi */
+.main-sobremi {
+    @include flex-column-center;
+
+    .sobremi p {
+        text-align: justify;
+        padding: 1rem;
+    }
+}
+
+
+.footer {
+   @include footer;
+    h2{
+        
+        font-size: small;
+    }
+}

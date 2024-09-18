@@ -1,0 +1,281 @@
+/*BS*/
+.section-index-video-div-iframe, .main-nuestroestudio-iframediv-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%; }
+
+/* estilos de Contacto */
+.color-boton {
+  background-color: coral; }
+
+.contacto h1,
+h2 {
+  text-align: center;
+  margin-bottom: 2rem; }
+
+.footer {
+  margin-top: 0.5rem;
+  font-size: small;
+  text-align: center; }
+
+/*estilos page nuestro estudio*/
+.main-nuestroestudio {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .main-nuestroestudio h2 {
+    margin-top: 2rem; }
+
+/* estilos del maps */
+.main-nuestroestudio {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 2%;
+  /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */ }
+
+.footer h3 {
+  margin-top: 0.5rem;
+  font-size: small;
+  text-align: center; }
+
+/* estilos de servicio.html */
+.main-servicios h1,
+h2 {
+  text-align: center; }
+
+/* Estilos de Carousel */
+.carousel-caption {
+  font-size: 3rem;
+  color: black;
+  text-shadow: 2px black; }
+
+.carousel-inner .carousel-item img {
+  margin: auto;
+  opacity: 60%; }
+
+.footer h4 {
+  margin-top: 0.5rem;
+  font-size: small;
+  text-align: center; }
+
+/* Estilos de page Sobre mi */
+.main-sobremi {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .main-sobremi .sobremi p {
+    text-align: justify;
+    padding: 1rem; }
+
+.footer {
+  margin-top: 0.5rem;
+  font-size: small;
+  text-align: center; }
+  .footer h2 {
+    font-size: small; }
+
+* {
+  /* outline: solid 1px red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  background-color: white; }
+
+/*estilos del contenedor*/
+.fuente-container {
+  font-family: 'Roboto', sans-serif; }
+
+/*estilos del header*/
+.color-menu {
+  background-color: whitesmoke; }
+
+.logo:hover {
+  box-shadow: 1px 1px 2px black;
+  transform: scale(0.9); }
+
+/*estilos del main*/
+.main-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .main-index h1 {
+    text-align: center; }
+    .main-index h1 span {
+      display: block;
+      align-items: center; }
+
+/*estilos del boton*/
+.main-index .boton {
+  background-color: coral;
+  padding: 0.7rem;
+  box-shadow: 2px 2px 10px black;
+  text-shadow: 1px 1px 5px black;
+  align-self: auto;
+  font-size: large; }
+
+.main-index .boton:hover {
+  box-shadow: 1px 1px 2px black;
+  transform: scale(0.9); }
+
+main .boton a {
+  text-decoration: none;
+  color: whitesmoke; }
+
+/*estilos de section*/
+section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem; }
+
+section .cards .card {
+  margin: 1rem 1rem 1rem 0rem; }
+
+/*Estilos de section index*/
+.section-index {
+  align-items: center; }
+
+.section-index .cards {
+  align-self: center; }
+
+/*Estilos de section video*/
+.section-index-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem; }
+  .section-index-video div {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */ }
+
+.section-index-video a {
+  text-decoration: none;
+  color: white;
+  background-color: white;
+  box-shadow: 1px 1px 4px black;
+  text-shadow: 1px 1px 3px black;
+  align-self: auto;
+  font-size: large;
+  margin-top: 20px; }
+
+.section-index-video a:hover {
+  box-shadow: 1px 1px 2px black;
+  transform: scale(0.9); }
+
+.arriba div {
+  text-align: center; }
+  .arriba div a {
+    text-decoration: none;
+    color: #fd9413; }
+
+/*estilos de footer*/
+.footer {
+  background-color: whitesmoke; }
+  .footer h5 {
+    margin-top: 0.5rem;
+    font-size: small;
+    text-align: center; }
+  .footer .social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+    .footer .social div {
+      margin-top: 10px;
+      height: auto;
+      width: auto;
+      text-align: center; }
+      .footer .social div img {
+        width: 30%; }
+
+@media screen and (min-width: 800px) {
+  /*Estilos del main*/
+  .main-index {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows: 0.2fr 0.2fr 1fr 0.3fr;
+    grid-template-areas: "h1 h1"
+ "h2 h2"
+ "presentacion-texto presentacion-imagen "
+ "boton presentacion-imagen";
+    justify-content: center;
+    justify-items: center;
+    align-items: center; }
+    .main-index h1 {
+      grid-area: h1; }
+    .main-index h2 {
+      grid-area: h2; }
+    .main-index .presentacion-imagen {
+      grid-area: presentacion-imagen; }
+    .main-index .presentacion-texto {
+      grid-area: presentacion-texto;
+      padding: 1rem;
+      text-align: justify; }
+    .main-index .boton {
+      grid-area: boton;
+      justify-content: end; }
+    .main-index h1 span {
+      display: inline;
+      align-items: center;
+      color: black; }
+    .main-index p {
+      font-size: medium; }
+  /* main Sobre mi */
+  .main-sobremi {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas: "h1 h1"
+ "sobremi sobremi-imagen ";
+    justify-content: center;
+    justify-items: center;
+    align-items: center; }
+    .main-sobremi h1 {
+      grid-area: h1; }
+    .main-sobremi .sobremi p {
+      grid-area: sobremi;
+      text-align: justify;
+      padding: 1rem; }
+    .main-sobremi .sobremi-imagen img {
+      grid-area: sobremi-imagen; }
+  /*Estilos de section index*/
+  .section-index .cards {
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+    .section-index .cards .cards .card {
+      margin: 1rem 1rem 1rem 0rem; }
+  .section-index-video {
+    display: grid;
+    grid-template-columns: 0.9fr 0.5fr;
+    grid-template-rows: 0.7fr 2fr;
+    grid-template-areas: "h3 h3"
+ "section-index-video-div a";
+    justify-content: center;
+    justify-items: center;
+    align-items: center; }
+    .section-index-video h3 {
+      grid-area: h3; }
+    .section-index-video a {
+      grid-area: a; }
+    .section-index-video .section-index-video-div {
+      grid-area: section-index-video-div; }
+  /* Estilos de footer */
+  .footer {
+    margin-top: 2rem; } }
+
+@media screen and (min-width: 1024px) {
+  .main-index p {
+    font-size: x-large; } }

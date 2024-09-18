@@ -1,0 +1,130 @@
+/*BS*/
+
+.color-menu{
+    background-color: bisque;
+}
+
+.color-boton{
+    background-color: tomato;
+    color:whitesmoke
+}
+
+.color-container{
+    background-color: bisque;
+}
+
+
+.fuente-container{
+    
+}
+
+/*Reset*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* outline: solid 1px red; */
+}
+
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+
+}
+
+/*Estilos del main*/
+main {
+    text-align: center;
+}
+
+.main-video {
+    display: flex;
+    flex-direction: column;
+}
+
+/*Estilos de section*/
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (min-width: 800px) {
+    .contenedor {
+        height: 100vh;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr 1fr ;
+        grid-template-rows:1fr 1fr 1fr 1fr ;
+        grid-template-areas:
+            "header header header header"
+            "main main main main"
+            "section section section section"
+            "footer footer footer footer"
+        ;
+    }
+
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        grid-area: header;
+
+    }
+
+    .menu ul {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+        
+    }
+
+    .menu ul li a {
+        text-decoration: none;
+    }
+
+    /*Estilos del main*/
+    main {
+
+        grid-area: main
+    }
+
+    .presentacion {
+        display: flex;
+        align-items: center;
+    }
+
+    .presentacion-texto {
+        padding: 1rem;
+        text-align: justify;
+    }
+
+    /*Estilos de section*/
+
+    section {
+        grid-area: section;
+    }
+
+    .boton {
+        align-self: auto;
+    }
+
+    /*Estilos de section*/
+
+
+    /*HTML sobre mi*/
+
+    .sobremi {
+        display: flex;
+        align-items: center;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+
+
+
+}
