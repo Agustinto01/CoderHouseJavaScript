@@ -1,5 +1,3 @@
-
-
 /**
  * Hola Marco, David y equipo de CoderHouse.
  * Esta pagina la hice en el curso anterior de desarrollo web, y es sobre un estudio jurídico. 
@@ -7,42 +5,67 @@
  * recibiento un input por pantalla ya que no logré imaginar un carrito de compras para este rubro (aunque quizá 
  * en una versión posterior lo pueda hacer.)
  * La pagina nueva es la entrada de menú Tarifas de index.html.
+ * 
+ * Edit reentrega: Corregí la asociación del archivo js al html para que no de error por consola.
  */
 
 
-// Variables para almacenar los valores de los inputs
-let suma = 0 // Declaración global de 'suma'
-const tramiteJubilatorioInput = document.getElementById('tramiteJubilatorio')
-const calculosPrevisionalesInput = document.getElementById('calculosPrevisionales')
-const reajusteJubilatorioInput = document.getElementById('reajusteJubilatorio')
-let checkbox = document.getElementById('facturaConsultaGeneral')
-const sumarButton = document.getElementById('sumarButton')
-// Función para sumar los valores
-function sumarValores() {
-    const tramiteJubilatorio = parseFloat(tramiteJubilatorioInput.value) || 0
-    const calculosPrevisionales = parseFloat(calculosPrevisionalesInput.value) || 0
-    const reajusteJubilatorio = parseFloat(reajusteJubilatorioInput.value) || 0
-    const resultado = tramiteJubilatorio + calculosPrevisionales + reajusteJubilatorio
-    return resultado
+
+
+
+const usuariosHabilitados = ["david", "marco", "coderhouse"]
+
+let usuario
+
+const validarUsuario = (user) => {
+
+    for (let i = 0; i < usuariosHabilitados.length; i++) {
+
+        if (user === usuariosHabilitados[i]) {
+            return true
+        }
+    }
+    return false
 }
 
-// Evento para el checkbox. Si está tildado, suma 15000. Si no, no suma nada.
+do {
+    usuario = prompt("Ingrese su nombre:").toLowerCase()
 
-checkbox.addEventListener('change', function() {
-
-    if (this.checked) {
-        // Si el checkbox está tildado, agrega 15000 a 'suma'
-        suma += 15000
-    } 
-   
-});
-
-
-sumarButton.addEventListener('click', function() {
-    suma = sumarValores()
-    if (checkbox.checked) {
-        suma += 15000
+    if (validarUsuario(usuario) === true) {
+        alert("Usted puede corregir esta entrega")
+    } else {
+        alert("Acceso denegado")
     }
-    const sumaFormateada = suma.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    alert('El costo del trámite jubilatorio es: ' +'$'+ sumaFormateada)
-});
+} while (validarUsuario(usuario) !== true)
+
+
+
+
+function calcularSuma() {
+    // Obtener los valores de los inputs
+    const importe1 = parseFloat(document.getElementById('tramiteJubilatorio').value) || 0
+    const importe2 = parseFloat(document.getElementById('calculosPrevisionales').value) || 0
+    const importe3 = parseFloat(document.getElementById('reajusteJubilatorio').value) || 0
+    const adicional = document.getElementById('facturaConsultaGeneral').checked ? 15000 : 0
+
+    // Calcular la suma total
+    const total = importe1 + importe2 + importe3 + adicional
+
+    // Mostrar el resultado
+    document.getElementById('resultado').textContent = total
+
+    const servicios = ["Tramite Jubilatorio", "Calculos Previsionales", "Reajuste Jubilatorio", "Consulta Inicial"]
+
+    const costosservicios = [importe1, importe2, importe3, adicional]
+
+    let importetotal = 0
+    for (let i = 0; i < servicios.length; i++) {
+
+        console.log(servicios[i] + " " + costosservicios[i])
+
+        importetotal = importetotal + costosservicios[i]
+
+    }
+    console.log("El importe final a pagar es $" + importetotal)
+}
+
