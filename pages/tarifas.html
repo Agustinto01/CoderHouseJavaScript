@@ -17,8 +17,7 @@
     <title>Servicios</title>
     <!-- icono FavIcon -->
     <link rel="icon" type="img/LogoFavIcon.png" href="../img/LogoFavIcon.png">
-    <!-- link a js, asyn hace que el codigo se ejecute de manera asincrona -->
-    <script async src="../js/programa.js"></script>
+
 
 </head>
 
@@ -59,11 +58,12 @@
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid">
-                <h1 class="fs-1">Estimación de trámites</h1>
-            </div>
+
         </header>
 
+        <div class="container-fluid">
+            <h1 class="fs-1">Estimación de costos para trámites jubilatorios</h1>
+        </div>
         <!-- Formulario para ingresar datos -->
         <section class="my-5">
             <div class="container">
@@ -74,7 +74,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="calculosPrevisionales" class="form-label">Cálculos Previsionales</label>
-                        <input type="number" class="form-control" id="calculosPrevisionales" name="calculosPrevisionales">
+                        <input type="number" class="form-control" id="calculosPrevisionales"
+                            name="calculosPrevisionales">
                     </div>
                     <div class="mb-3">
                         <label for="reajusteJubilatorio" class="form-label">Reajuste Jubilatorio</label>
@@ -92,6 +93,27 @@
 
 
         <h2>El total de tu trámite es: $<span id="resultado">0</span></h2>
+
+        <main>
+
+            <section class="productos">
+                <h3>Otros Servicios Disponibles</h3>
+
+                <div id="contenedor-productos" class="">
+
+                </div>
+            </section>
+
+  <!--           <section class="carrito">
+                <h3>Carrito</h3>
+
+                <div id="contenedor-carrito">
+
+                </div>
+                <p id="total-carrito"></p>
+            </section> -->
+        </main>
+
 
 
         <!-- enlace interno-->
@@ -128,6 +150,9 @@
 
 
     </div>
+
+    <!-- link a js, asyn hace que el codigo se ejecute de manera asincrona -->
+    <script asyn src="../js/programa.js"></script>
 </body>
 
 </html>
