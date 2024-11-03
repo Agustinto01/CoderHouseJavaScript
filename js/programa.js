@@ -1,19 +1,6 @@
-/**
- * Hola Marco, David y equipo de CoderHouse.
- * Esta pagina la hice en el curso anterior de desarrollo web, y es sobre un estudio jurídico. 
- * Se me ocurrió agregarle un modulo de cálculo de costos de los trámites de abogacia (jubilaciones en este caso) 
- * recibiento un input por pantalla ya que no logré imaginar un carrito de compras para este rubro (aunque quizá 
- * en una versión posterior lo pueda hacer.)
- * La pagina nueva es la entrada de menú Tarifas de index.html.
- * 
- * Edit reentrega: Corregí la asociación del archivo js al html para que no de error por consola.
- */
-
-
-
 
 let fechaActual = new Date()
-const usuariosHabilitados = ["david", "marco", "coderhouse"]
+const usuariosHabilitados = ["david", "marco", "coderhouse", "david/marco"]
 
 let usuario
 
@@ -29,7 +16,7 @@ const validarUsuario = (user) => {
 }
 
 do {
-    usuario = prompt("Ingrese su nombre:").toLowerCase()
+    usuario = prompt("Ingrese su nombre:", "David/Marco").toLowerCase()
 
     if (validarUsuario(usuario) === true) {
         alert("Usted puede corregir esta entrega")
@@ -65,14 +52,47 @@ function calcularSuma() {
     let importetotal = 0;
     for (let i = 0; i < servicios.length; i++) {
 
-        //console.log(servicios[i] + " " + costosservicios[i])
+        
 
         importetotal += costosservicios[i];
 
     }
-    //console.log("El importe final a pagar es $" + importetotal)
-    //console.log("El cliente es Id:" + cliente.id + " " + cliente.nombre + " " + cliente.apellido)
+    
+    return total
 }
+
+
+
+
+async function getTipoDeCambio() {
+    const url = 'https://open.er-api.com/v6/latest/USD'
+    try {
+        const respuesta = await fetch(url)
+        if (!respuesta.ok) {
+            throw new Error('No hubo respuesta')
+        }
+        const data = await respuesta.json()
+        const arsRate = data.rates.ARS
+        return arsRate
+
+    } catch (error) {
+        console.error('Hubo un problema con la operación de fetch:', error);
+    }
+}
+
+
+async function importeEnUsd() {
+    
+    const pesosPorDolar = await getTipoDeCambio()
+    const importe = calcularSuma()
+    const resultadoEnUSD = Number(importe / pesosPorDolar).toFixed(2)
+    // Mostrar el resultado
+    document.getElementById('tC').textContent = pesosPorDolar
+    document.getElementById('resultadoUSD').textContent = resultadoEnUSD
+    
+}
+
+
 
 
 
@@ -89,10 +109,7 @@ class Cliente {
     }
 
     confirmar() {
-        /* console.log("Se ha registrado el cliente " + this.nombre + " " + this.apellido + " con Id " + this.id + " DNI: " + this.dni +
-            " Telefono: " + this.telefono + " E-mail: " + this.email + " con fecha " + fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear() +
-            " a las " + fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds()) */
-
+        
         alert("Se ha registrado el cliente " + this.nombre + " " + this.apellido + " con Id " + this.id + " DNI: " + this.dni +
             " Telefono: " + this.telefono + " E-mail: " + this.email + " con fecha " + fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear() +
             " a las " + fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds())
@@ -101,67 +118,41 @@ class Cliente {
 
 
 // Solicitar datos del cliente por pantalla
-const nombre = prompt("Ingrese su nombre:");
-const apellido = prompt("Ingrese su apellido:");
-const dni = prompt("Ingrese su DNI:");
-const telefono = prompt("Ingrese su teléfono:");
-const email = prompt("Ingrese su email:");
+const nombre = prompt("Ingrese su nombre:", "Juan");
+const apellido = prompt("Ingrese su apellido:", "Perez");
+const dni = prompt("Ingrese su DNI:", "31654789");
+const telefono = prompt("Ingrese su teléfono:", "1122334455");
+const email = prompt("Ingrese su email:", "juanperez@mail.com");
+
+// Guardar los datos en local storage
+localStorage.setItem('cliente', JSON.stringify({ nombre, apellido, dni, telefono, email }));
+
+// Para acceder a la información guardada en el local storage
+const clienteGuardado = JSON.parse(localStorage.getItem('cliente'));
+if (clienteGuardado) {
+
+    const clienteInfo = `
+        <p>Nombre: ${clienteGuardado.nombre}</p>
+        <p>Apellido: ${clienteGuardado.apellido}</p>
+        <p>DNI: ${clienteGuardado.dni}</p>
+        <p>Teléfono: ${clienteGuardado.telefono}</p>
+        <p>Email: ${clienteGuardado.email}</p>
+    `;
+    document.getElementById('cliente-info').innerHTML = clienteInfo;
+}
 
 // Crear una instancia de la clase Cliente con los datos ingresados
 const cliente = new Cliente(nombre, apellido, dni, telefono, email);
 
 // Confirmar los datos del cliente
 cliente.confirmar();
-//console.log("el cliente tiene id " + cliente.id)
-//const cliente = new Cliente("Juan", "Perez", 12345678, 1122334455, "lalala@gmail.com")
-
-//cliente.confirmar() 
 
 
-const stockProductos = [
-    {
-        id: 1,
-        nombre: "Accidentes Laborales ",
-        precio: 10000,
-        desc: "Servicio Disponible.",
-        img:"../img/AccidentesLaborales.jpg"
-
-    },
-    {
-        id: 2,
-        nombre: "Despido Discriminatorio",
-        precio: 20000,
-        desc: "Servicio Disponible.",
-        img: "../img/DespidoDiscriminatorio.jpg"
-    },
-    {
-        id: 3,
-        nombre: "Despido Injustificado",
-        precio: 15000,
-        desc: "Producto en venta.",
-        img: "../img/DespidoInjustificado.jpg"
-    },
-    {
-        id: 4,
-        nombre: "Jubilaciones y Pensiones",
-        precio: 10000,
-        desc: "Producto en venta.",
-        img: "../img/jubilacionesYPensiones.jpg"
-    },
-    {
-        id: 5,
-        nombre: "Liquidacion Blue Corp",
-        precio: 25000,
-        desc: "Producto en venta.",
-        img: "../img/LiquidacionBlueCorp.jpg"
-    },
-
-]
 
 
 const contenedorProductos = document.getElementById("contenedor-productos")
 
-stockProductos.forEach((elm) => {
+stockServicios.forEach((elm) => {
 
     const div = document.createElement("div")
 
@@ -172,11 +163,34 @@ stockProductos.forEach((elm) => {
     <hr>
     <h3>${elm.nombre}</h3>
     <p>Precio: $${elm.precio}</p>
-
-    <button>Contratar</button>
+    <button id="contratar-btn${elm.id}">Contratar</button>
     `
 
     contenedorProductos.appendChild(div)
-})
 
 
+    let boton = document.getElementById(`contratar-btn${elm.id}`)
+
+    const modalContainer = document.getElementById(`modal-container`)
+    const cerrarModal = document.getElementById(`cerrar-modal`)
+
+    boton.addEventListener('click', () => {
+        const total = calcularSuma()
+        modalContainer.classList.add(`modal-active`)
+    })
+
+    cerrarModal.addEventListener('click', () => {
+        modalContainer.classList.remove(`modal-active`)
+    })
+
+}
+)
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const botonCalcular = document.getElementById('botonCalcular');
+    botonCalcular.addEventListener('click', function() {
+        calcularSuma();
+        importeEnUsd();
+    });
+});

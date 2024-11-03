@@ -70,41 +70,59 @@
                 <form>
                     <div class="mb-3">
                         <label for="tramiteJubilatorio" class="form-label">Trámite Jubilatorio</label>
-                        <input type="number" class="form-control" id="tramiteJubilatorio" name="tramiteJubilatorio">
+                        <input type="number" class="form-control" id="tramiteJubilatorio" name="tramiteJubilatorio"
+                            value="8000">
                     </div>
                     <div class="mb-3">
                         <label for="calculosPrevisionales" class="form-label">Cálculos Previsionales</label>
                         <input type="number" class="form-control" id="calculosPrevisionales"
-                            name="calculosPrevisionales">
+                            name="calculosPrevisionales" value="6000">
                     </div>
                     <div class="mb-3">
                         <label for="reajusteJubilatorio" class="form-label">Reajuste Jubilatorio</label>
-                        <input type="number" class="form-control" id="reajusteJubilatorio" name="reajusteJubilatorio">
+                        <input type="number" class="form-control" id="reajusteJubilatorio" name="reajusteJubilatorio"
+                            value="10000">
                     </div>
                     <div>
                         <input type="checkbox" id="facturaConsultaGeneral" name="facturaConsultaGeneral" value="15000">
                         <label for="facturaConsultaGeneral">Consulta inicial $15000</label>
                     </div>
-                    <!-- <button type="button" class="btn btn-primary" id="sumarButton">Sumar</button> -->
-                    <button type="button" class="btn btn-primary" onclick="calcularSuma()">Calcular Suma</button>
+                        <button type="button" class="btn btn-primary" id="botonCalcular">Calcular Suma</button>
                 </form>
+            </div>
+
+            <div id="cliente-info" class="">
+
             </div>
         </section>
 
 
-        <h2>El total de tu trámite es: $<span id="resultado">0</span></h2>
+        <h2>El total del trámite es: $<span id="resultado">0</span></h2>
+        <h2>El tipo de cambio al dia de hoy es $<span id="tC">0</span>. El total del trámite en USD es: $<span id="resultadoUSD">0</span></h2>
 
         <main>
 
             <section class="productos">
                 <h3>Otros Servicios Disponibles</h3>
+                <div id="modal-container" class="modal-container">
+                    <div id="modal">
+                        
+                        <h2>Adicionaste el servicio correctamente y serás redireccionado a la pantalla de pago</h2> 
+                        <button id="cerrar-modal">Cerrar</button>
+                    </div>
+
+                </div>
+
 
                 <div id="contenedor-productos" class="">
 
                 </div>
             </section>
 
-  <!--           <section class="carrito">
+
+
+
+            <!--           <section class="carrito">
                 <h3>Carrito</h3>
 
                 <div id="contenedor-carrito">
@@ -152,7 +170,9 @@
     </div>
 
     <!-- link a js, asyn hace que el codigo se ejecute de manera asincrona -->
+    <script src="../js/servicios.js"></script>
     <script asyn src="../js/programa.js"></script>
+
 </body>
 
 </html>
