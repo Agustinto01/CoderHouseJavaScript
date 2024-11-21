@@ -1,31 +1,7 @@
 
-let fechaActual = new Date()
-const usuariosHabilitados = ["david", "marco", "coderhouse", "david/marco"]
 
-let usuario
-
-const validarUsuario = (user) => {
-
-    for (let i = 0; i < usuariosHabilitados.length; i++) {
-
-        if (user === usuariosHabilitados[i]) {
-            return true
-        }
-    }
-    return false
-}
-
-do {
-    usuario = prompt("Ingrese su nombre:", "David/Marco").toLowerCase()
-
-    if (validarUsuario(usuario) === true) {
-        alert("Usted puede corregir esta entrega")
-    } else {
-        alert("Acceso denegado")
-    }
-} while (validarUsuario(usuario) !== true)
-
-
+var DateTime = luxon.DateTime
+const now = DateTime.now()
 
 function calcularSuma() {
     // Obtener los valores de los inputs
@@ -34,10 +10,7 @@ function calcularSuma() {
     const importe3 = parseFloat(document.getElementById('reajusteJubilatorio').value) || 0
     const adicional = document.getElementById('facturaConsultaGeneral').checked ? 15000 : 0
 
-    if (importe1 < 0 || importe2 < 0 || importe3 < 0) {
-        alert("No se pueden ingresar valores negativos")
-        return
-    }
+
 
     // Calcular la suma total
     const total = importe1 + importe2 + importe3 + adicional
@@ -52,12 +25,12 @@ function calcularSuma() {
     let importetotal = 0;
     for (let i = 0; i < servicios.length; i++) {
 
-        
+
 
         importetotal += costosservicios[i];
 
     }
-    
+
     return total
 }
 
@@ -82,14 +55,14 @@ async function getTipoDeCambio() {
 
 
 async function importeEnUsd() {
-    
+
     const pesosPorDolar = await getTipoDeCambio()
     const importe = calcularSuma()
     const resultadoEnUSD = Number(importe / pesosPorDolar).toFixed(2)
     // Mostrar el resultado
     document.getElementById('tC').textContent = pesosPorDolar
     document.getElementById('resultadoUSD').textContent = resultadoEnUSD
-    
+
 }
 
 
@@ -108,49 +81,101 @@ class Cliente {
         this.email = email
     }
 
-    confirmar() {
-        
-        alert("Se ha registrado el cliente " + this.nombre + " " + this.apellido + " con Id " + this.id + " DNI: " + this.dni +
-            " Telefono: " + this.telefono + " E-mail: " + this.email + " con fecha " + fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear() +
-            " a las " + fechaActual.getHours() + ":" + fechaActual.getMinutes() + ":" + fechaActual.getSeconds())
-    }
+
 }
 
 
-// Solicitar datos del cliente por pantalla
-const nombre = prompt("Ingrese su nombre:", "Juan");
-const apellido = prompt("Ingrese su apellido:", "Perez");
-const dni = prompt("Ingrese su DNI:", "31654789");
-const telefono = prompt("Ingrese su teléfono:", "1122334455");
-const email = prompt("Ingrese su email:", "juanperez@mail.com");
+document.addEventListener('DOMContentLoaded', function () {
 
-// Guardar los datos en local storage
-localStorage.setItem('cliente', JSON.stringify({ nombre, apellido, dni, telefono, email }));
 
-// Para acceder a la información guardada en el local storage
-const clienteGuardado = JSON.parse(localStorage.getItem('cliente'));
-if (clienteGuardado) {
+    // Mostrar el modal al cargar la página
+    const clientModal = document.getElementById('clientModal');
+    clientModal.style.display = 'block';
 
-    const clienteInfo = `
-        <p>Nombre: ${clienteGuardado.nombre}</p>
-        <p>Apellido: ${clienteGuardado.apellido}</p>
-        <p>DNI: ${clienteGuardado.dni}</p>
-        <p>Teléfono: ${clienteGuardado.telefono}</p>
-        <p>Email: ${clienteGuardado.email}</p>
-    `;
-    document.getElementById('cliente-info').innerHTML = clienteInfo;
-}
+    // Obtener referencias a los elementos del formulario
+    const nombreInput = document.getElementById('nombre');
+    const apellidoInput = document.getElementById('apellido');
+    const dniInput = document.getElementById('dni');
+    const telefonoInput = document.getElementById('telefono');
+    const emailInput = document.getElementById('email');
+    const errorMessage = document.getElementById('error-message');
+
+    // Obtener el valor de now (puede ser la fecha y hora actual)
+    const now = new Date().toLocaleString();
+
+    // Insertar el valor de now en el HTML
+    document.getElementById('now').textContent = now;
+
+    // Manejar el envío del formulario
+    const form = document.getElementById('clientForm');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Limpiar mensajes de error anteriores
+        errorMessage.textContent = '';
+
+        // Validar que el campo de teléfono contenga solo números
+        const telefono = telefonoInput.value;
+        const telefonoRegex = /^[0-9]+$/;
+        if (!telefonoRegex.test(telefono)) {
+            errorMessage.textContent = 'Por favor, ingrese un número de teléfono válido.';
+            return;
+        }
+
+
+        // Validar que el campo dni contenga solo números
+        const dni = dniInput.value;
+        const dniRegex = /^[0-9]+$/;
+        if (!dniRegex.test(dni)) {
+            errorMessage.textContent = 'Por favor, ingrese un número de dni válido.';
+            return;
+        }
+
+
+
+        // Verificar si el cliente ya está en el local storage
+        const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+        const clienteExistente = clientes.find(cliente => cliente.dni === dni);
+        if (clienteExistente) {
+            errorMessage.textContent = 'El cliente ya está registrado.';
+            return;
+        }
+
+
+
+        // Obtener los valores de los campos del formulario
+        const nombre = nombreInput.value;
+        const apellido = apellidoInput.value;
+        const email = emailInput.value;
+
+        // Ocultar el modal
+        clientModal.style.display = 'none';
+
+        // Guardar los datos en local storage
+        const nuevoCliente = { nombre, apellido, dni, telefono, email, tramiteJubilatorio, calculosPrevisionales, reajusteJubilatorio };
+        clientes.push(nuevoCliente);
+        localStorage.setItem('clientes', JSON.stringify(clientes));
+
+        // Mostrar los datos del cliente en la página
+        const clienteGuardado = JSON.parse(localStorage.getItem('cliente'));
+        if (clienteGuardado) {
+            const clienteInfo = `
+                <p>Nombre: ${clienteGuardado.nombre}</p>
+                <p>Apellido: ${clienteGuardado.apellido}</p>
+                <p>DNI: ${clienteGuardado.dni}</p>
+                <p>Teléfono: ${clienteGuardado.telefono}</p>
+                <p>Email: ${clienteGuardado.email}</p>
+            `;
+            document.getElementById('cliente-info').innerHTML = clienteInfo;
+        }
+    });
+});
 
 // Crear una instancia de la clase Cliente con los datos ingresados
 const cliente = new Cliente(nombre, apellido, dni, telefono, email);
 
-// Confirmar los datos del cliente
-cliente.confirmar();
-
-
-
-
 const contenedorProductos = document.getElementById("contenedor-productos")
+
 
 stockServicios.forEach((elm) => {
 
@@ -173,8 +198,11 @@ stockServicios.forEach((elm) => {
 
     const modalContainer = document.getElementById(`modal-container`)
     const cerrarModal = document.getElementById(`cerrar-modal`)
+    const precioServicioElement = document.getElementById('precioServicio');
+
 
     boton.addEventListener('click', () => {
+
         const total = calcularSuma()
         modalContainer.classList.add(`modal-active`)
     })
@@ -187,9 +215,27 @@ stockServicios.forEach((elm) => {
 )
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const tramiteJubilatorioInput = document.getElementById('tramiteJubilatorio');
+    const calculosPrevisionalesInput = document.getElementById('calculosPrevisionales');
+    const reajusteJubilatorioInput = document.getElementById('reajusteJubilatorio');
+    const errorMessage = document.getElementById('error-message');
     const botonCalcular = document.getElementById('botonCalcular');
-    botonCalcular.addEventListener('click', function() {
+    botonCalcular.addEventListener('click', function () {
+        // Limpiar mensajes de error anteriores
+        errorMessage.textContent = '';
+
+        // Validar que los campos contengan solo números
+        const tramiteJubilatorio = tramiteJubilatorioInput.value;
+        const calculosPrevisionales = calculosPrevisionalesInput.value;
+        const reajusteJubilatorio = reajusteJubilatorioInput.value;
+        const numeroRegex = /^[0-9]+$/;
+
+        if (!numeroRegex.test(tramiteJubilatorio) || !numeroRegex.test(calculosPrevisionales) || !numeroRegex.test(reajusteJubilatorio)) {
+            errorMessage.textContent = 'Por favor, ingrese solo números en todos los campos.';
+            return;
+        }
+
         calcularSuma();
         importeEnUsd();
     });

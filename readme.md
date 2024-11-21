@@ -1,3 +1,15 @@
+Reentrega 21/11/2024
+Hola Marco, me dieron solo 48hs para hacer todas las correcciones y la verdad que entre temas personales y laborales el tiempo que pude dedicarle me resultó muy escaso. Intenté recibir una prórroga pero no me la aceptaron.
+Igualmente pude enfocarme lo mas que pude y siguiendo el video intenté solucionar los problemas que fuiste enumerando. Gracias por tus comentarios, me fueron muy útiles para entender que cosas pueden mejorarse.
+Quité los valores pre cargados. En la documentacion de CoderHouse dice que hay que dejar valores ya cargados para facilitar la correccion del tutor, es por eso que los dejé en un primer momento.
+Eliminé los prompts y alerts que existian, realicé validaciones sobre los campos, incorporé luxon entre otras cosas que fui corrigiendo.
+Me faltó tiempo para mejorar la parte visual como armar una grilla en vez de un recuadro flotando.
+Una vez mas gracias.
+
+
+
+
+
 Hola Marco, David y equipo de CoderHouse.
 Esta pagina la hice en el curso anterior de desarrollo web, y es sobre un estudio jurídico. 
 Se me ocurrió agregarle un modulo de cálculo de costos de los trámites de abogacia (jubilaciones en este caso) 
