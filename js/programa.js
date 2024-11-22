@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dniInput = document.getElementById('dni');
     const telefonoInput = document.getElementById('telefono');
     const emailInput = document.getElementById('email');
-    const errorMessage = document.getElementById('error-message');
+    const errorMessage = document.getElementById('error-message-cliente');
 
     // Obtener el valor de now (puede ser la fecha y hora actual)
     const now = new Date().toLocaleString();
@@ -156,20 +156,19 @@ document.addEventListener('DOMContentLoaded', function () {
         clientes.push(nuevoCliente);
         localStorage.setItem('clientes', JSON.stringify(clientes));
 
-        // Mostrar los datos del cliente en la página
-        const clienteGuardado = JSON.parse(localStorage.getItem('cliente'));
-        if (clienteGuardado) {
-            const clienteInfo = `
-                <p>Nombre: ${clienteGuardado.nombre}</p>
-                <p>Apellido: ${clienteGuardado.apellido}</p>
-                <p>DNI: ${clienteGuardado.dni}</p>
-                <p>Teléfono: ${clienteGuardado.telefono}</p>
-                <p>Email: ${clienteGuardado.email}</p>
-            `;
+       // Mostrar los datos del cliente en la página
+       const clienteGuardado = nuevoCliente;
+       const clienteInfo = `
+           <p>Nombre: ${clienteGuardado.nombre}</p>
+           <p>Apellido: ${clienteGuardado.apellido}</p>
+           <p>DNI: ${clienteGuardado.dni}</p>
+           <p>Teléfono: ${clienteGuardado.telefono}</p>
+           <p>Email: ${clienteGuardado.email}</p>
+       `;
             document.getElementById('cliente-info').innerHTML = clienteInfo;
-        }
+        })
     });
-});
+
 
 // Crear una instancia de la clase Cliente con los datos ingresados
 const cliente = new Cliente(nombre, apellido, dni, telefono, email);
